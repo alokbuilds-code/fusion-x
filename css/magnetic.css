@@ -1,0 +1,157 @@
+/* ==========================================================================
+   SECTION 03 — MAGNETIC FIELD & CONFINEMENT TOPOLOGY
+   ========================================================================== */
+
+.magnetic-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.magnetic-canvas-card {
+  background: radial-gradient(circle at center, #09101b 0%, #05070c 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  height: 560px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+}
+
+.magnetic-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Magnetic Field Overlay Controls */
+.magnetic-overlay-tools {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.magnetic-status-box {
+  background: rgba(7, 9, 14, 0.8);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: #94a3b8;
+}
+
+.magnetic-status-box strong {
+  color: var(--cyan-glow);
+}
+
+/* Magnetic Control Deck */
+.magnetic-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: var(--space-5);
+}
+
+.magnetic-param-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.magnetic-param-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.magnetic-param-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+.magnetic-param-val {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--cyan-glow);
+  font-weight: 600;
+}
+
+/* Particle Tracing Modes */
+.particle-trace-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.trace-mode-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trace-mode-btn:hover {
+  border-color: var(--border-medium);
+  color: #f1f5f9;
+}
+
+.trace-mode-btn.active {
+  border-color: var(--cyan-glow);
+  color: var(--cyan-glow);
+  background: var(--cyan-subtle);
+}
+
+/* Educational Callout Cards */
+.magnetic-physics-card {
+  background: var(--bg-surface);
+  border-left: 3px solid var(--cyan-glow);
+  padding: var(--space-4);
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.magnetic-physics-card h4 {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-glow);
+}
+
+.magnetic-physics-card p {
+  font-size: var(--text-sm);
+  color: #8c9cb0;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .magnetic-layout {
+    grid-template-columns: 1fr;
+  }
+  .magnetic-canvas-card {
+    height: 440px;
+  }
+}

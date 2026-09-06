@@ -1,0 +1,227 @@
+
+.plasma-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.plasma-canvas-wrapper {
+  background: #04060a;
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  min-height: 580px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+}
+
+.plasma-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Diagnostics HUD on the Plasma Canvas */
+.plasma-hud {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.plasma-hud-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.plasma-hud-right {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.plasma-readout-pill {
+  background: rgba(7, 9, 14, 0.75);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.plasma-readout-pill span {
+  color: var(--cyan-glow);
+  font-weight: 600;
+}
+
+/* Core-to-Edge Cross Section Mini-Profile Canvas */
+.plasma-profile-overlay {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  background: rgba(7, 9, 14, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: var(--space-3);
+  backdrop-filter: blur(8px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.plasma-profile-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.plasma-profile-canvas {
+  width: 180px;
+  height: 60px;
+  display: block;
+}
+
+/* Plasma Control Deck */
+.plasma-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: var(--space-6);
+}
+
+.plasma-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.plasma-control-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.plasma-param-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.plasma-param-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--cyan-glow);
+  font-weight: 600;
+}
+
+.plasma-param-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Quick Mode Preset Buttons */
+.plasma-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.plasma-preset-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: 6px 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.plasma-preset-btn:hover {
+  border-color: var(--border-medium);
+  color: #f1f5f9;
+}
+
+.plasma-preset-btn.active {
+  border-color: var(--cyan-glow);
+  color: var(--cyan-glow);
+  background: var(--cyan-subtle);
+}
+
+/* Particle Type Toggles */
+.particle-type-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.particle-badge-group {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.particle-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.particle-color-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.particle-color-indicator--deuterium {
+  background: #00f0ff;
+  box-shadow: 0 0 6px #00f0ff;
+}
+
+.particle-color-indicator--tritium {
+  background: #9d5cff;
+  box-shadow: 0 0 6px #9d5cff;
+}
+
+.particle-color-indicator--alpha {
+  background: #ffaa00;
+  box-shadow: 0 0 6px #ffaa00;
+}
+
+@media (max-width: 1024px) {
+  .plasma-layout {
+    grid-template-columns: 1fr;
+  }
+  .plasma-canvas-wrapper {
+    min-height: 480px;
+  }
+}

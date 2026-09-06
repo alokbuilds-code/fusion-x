@@ -1,0 +1,258 @@
+/* ==========================================================================
+   SECTION 05 — LIVE TELEMETRY & INDUSTRIAL CONTROL ROOM
+   ========================================================================== */
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-6);
+}
+
+/* Left Column: Oscilloscope Multi-channel Graphs & Cross Section */
+.telemetry-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Oscilloscope Shell */
+.oscilloscope-card {
+  background: #04070c;
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.oscilloscope-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.oscilloscope-channel-toggles {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.channel-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  color: #7e8e9f;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.channel-tag.active {
+  border-color: currentColor;
+}
+
+.channel-tag--ch1.active { color: #00f0ff; background: rgba(0, 240, 255, 0.1); }
+.channel-tag--ch2.active { color: #9d5cff; background: rgba(157, 92, 255, 0.1); }
+.channel-tag--ch3.active { color: #ffaa00; background: rgba(255, 170, 0, 0.1); }
+.channel-tag--ch4.active { color: #00e676; background: rgba(0, 230, 118, 0.1); }
+
+.oscilloscope-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: #020408;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.oscilloscope-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Secondary Multi-gauge Row */
+.telemetry-gauge-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.gauge-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+.gauge-svg-wrap {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg-wrap svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-bg-circle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 6;
+}
+
+.gauge-bar-circle {
+  fill: none;
+  stroke: var(--cyan-glow);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 226;
+  stroke-dashoffset: 70;
+  transition: stroke-dashoffset 400ms ease;
+}
+
+.gauge-reading {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.gauge-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.gauge-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Right Column: Plasma Cross-Section Equilibrium & Event Timeline */
+.telemetry-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Poloidal Flux Cross-Section Shape */
+.cross-section-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cross-section-canvas-wrap {
+  width: 100%;
+  height: 220px;
+  background: #05080f;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cross-section-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cross-section-params {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cs-param-item {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #7e8e9f;
+}
+
+.cs-param-item strong {
+  color: #cbd5e1;
+}
+
+/* Diagnostic Event Timeline Log */
+.event-log-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.event-log-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.event-log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: 6px 8px;
+  background: var(--bg-surface);
+  border-left: 2px solid #64748b;
+  border-radius: 0 2px 2px 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.event-log-item--info { border-left-color: var(--cyan-glow); }
+.event-log-item--warn { border-left-color: var(--amber-warning); }
+.event-log-item--crit { border-left-color: var(--red-critical); background: rgba(255, 51, 75, 0.08); }
+
+.event-time {
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.event-text {
+  color: #c5cedd;
+}
+
+@media (max-width: 1024px) {
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+  .telemetry-gauge-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FUSION-X | Tokamak Engineering Platform</title>
+  <meta name="description" content="Advanced scientific engineering platform for tokamak nuclear fusion research. Real-time plasma physics simulations, magnetic confinement topologies, Lawson criterion differential engine, and telemetry.">
+
+  <!-- Core & Section Styles -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/reactor.css">
+  <link rel="stylesheet" href="css/plasma.css">
+  <link rel="stylesheet" href="css/magnetic.css">
+  <link rel="stylesheet" href="css/simulation.css">
+  <link rel="stylesheet" href="css/telemetry.css">
+  <link rel="stylesheet" href="css/experiments.css">
+  <link rel="stylesheet" href="css/research.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       STICKY INDUSTRIAL NAVIGATION
+       ======================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand" aria-label="FUSION-X Home">
+        <div class="nav-logo-glyph">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
+            <circle cx="16" cy="16" r="13" stroke-width="2" />
+            <ellipse cx="16" cy="16" rx="13" ry="5.5" stroke-width="1.5" />
+            <circle cx="16" cy="16" r="3" fill="#00f0ff" />
+          </svg>
+        </div>
+        <span class="nav-title">FUSION-X</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#reactor" class="nav-link">REACTOR</a></li>
+          <li><a href="#plasma" class="nav-link">PLASMA</a></li>
+          <li><a href="#magnetic" class="nav-link">MAGNETIC FIELD</a></li>
+          <li><a href="#simulation" class="nav-link">SIMULATION</a></li>
+          <li><a href="#telemetry" class="nav-link">TELEMETRY</a></li>
+          <li><a href="#experiments" class="nav-link">EXPERIMENTS</a></li>
+          <li><a href="#research" class="nav-link">RESEARCH</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="nav-status">
+          <span class="status-dot status-dot--pulse status-pill--cyan"></span>
+          <span>B: <strong id="navBField">5.3T</strong></span>
+          <span style="color: #4b5563;">|</span>
+          <span>Q: <strong id="navQFactor">0.00</strong></span>
+          <span style="color: #4b5563;">|</span>
+          <strong id="navReactorState" style="color: var(--cyan-glow);">STANDBY</strong>
+        </div>
+
+        <button class="audio-toggle-btn" id="globalAudioToggle" title="Toggle Reactor Acoustics [M]" aria-label="Toggle Reactor Sound">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">MENU</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION — CINEMATIC 6-IMAGE DOCUMENTARY CAROUSEL
+       ======================================================================== -->
+  <section class="hero" id="hero">
+    <!-- Carousel Slides Viewport -->
+    <div class="carousel" id="heroCarouselSlides">
+      <!-- Injected via HeroCarousel in js/core/carousel.js -->
+    </div>
+
+    <!-- Cinematic Overlays -->
+    <div class="hero-vignette"></div>
+    <div class="hero-mesh"></div>
+
+    <!-- Minimal Overlay Typography -->
+    <div class="hero-content">
+      <div class="hero-status-wrap">
+        <span class="hero-status-pulse"></span>
+        <span class="hero-status-text">REACTOR SIMULATION / ONLINE</span>
+        <span style="color: #475569;">|</span>
+        <span class="mono-label" id="heroLiveClock">--:--:-- UTC</span>
+      </div>
+
+      <h1 class="hero-title">FUSION-X</h1>
+      <p class="hero-tagline">Engineering the conditions for a star.</p>
+
+      <div class="hero-actions">
+        <a href="#reactor" class="btn btn--primary">INSPECT TOKAMAK</a>
+        <a href="#simulation" class="btn btn--secondary">LAUNCH SIMULATOR</a>
+      </div>
+
+      <div class="hero-slide-info">
+        <div class="hero-slide-num" id="heroSlideTag">TOROIDAL VACUUM VESSEL / SECTOR 04</div>
+        <div class="hero-slide-desc" id="heroSlideDesc">Interior view of the D-shaped vacuum chamber armored with tungsten armor tiles, containing the 150-million-degree deuterium-tritium plasma ring.</div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation & Timeline Progress -->
+    <div class="hero-controls">
+      <div class="hero-controls-inner">
+        <div class="carousel-progress-wrap">
+          <div class="carousel-progress-labels">
+            <span>INDEX <strong id="carouselCurrentIndex" style="color: #fff;">01</strong> / <span id="carouselTotalIndex">06</span></span>
+            <span id="heroSlideTitle" style="color: var(--cyan-glow); font-weight: 600;">REACTOR CORE</span>
+          </div>
+          <div class="carousel-progress-bar">
+            <div class="carousel-progress-fill" id="carouselProgressFill"></div>
+          </div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" id="carouselPrevBtn" aria-label="Previous Slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="carousel-arrow" id="carouselNextBtn" aria-label="Next Slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 01 — THE REACTOR: INTERACTIVE TOKAMAK INSPECTOR
+       ======================================================================== -->
+  <section class="section" id="reactor">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">SECTION 01 // TOKAMAK ARCHITECTURE</span>
+        <h2 class="section-title">The Tokamak Reactor</h2>
+        <p class="section-desc">
+          A high-precision magnetic confinement device designed to bottle a burning thermonuclear plasma at temperatures ten times hotter than the core of the Sun. Rotate and inspect the primary engineering sub-assemblies.
+        </p>
+      </div>
+
+      <div class="reactor-layout">
+        <!-- 3D Canvas Viewport -->
+        <div class="reactor-viewport-card">
+          <div class="reactor-hud-overlay">
+            <div class="reactor-hud-badge">INTERACTION: <strong>DRAG TO ORBIT // WHEEL TO ZOOM</strong></div>
+            <div class="reactor-hud-badge">PROJECTION: <strong>ISOMETRIC PERSPECTIVE (NO 3D LIBS)</strong></div>
+          </div>
+
+          <div class="reactor-canvas-container">
+            <canvas id="tokamakCanvas" class="reactor-canvas"></canvas>
+          </div>
+
+          <!-- Bottom Control Bar -->
+          <div class="reactor-view-controls">
+            <button class="reactor-ctrl-btn active" id="tokamakAutoRotateBtn">AUTO ROTATE</button>
+            <button class="reactor-ctrl-btn" id="tokamakResetViewBtn">RESET VIEW</button>
+          </div>
+
+          <div class="reactor-exploded-bar">
+            <label for="tokamakExplodeSlider">EXPLODED VIEW</label>
+            <input type="range" id="tokamakExplodeSlider" min="0" max="1" step="0.01" value="0" aria-label="Tokamak Exploded View Expansion">
+          </div>
+        </div>
+
+        <!-- Component Specifications Dossier -->
+        <div class="reactor-spec-panel">
+          <!-- Layer Toggles -->
+          <div class="panel">
+            <div class="panel-header">
+              <span class="panel-title">SUBSYSTEM LAYERS</span>
+            </div>
+            <div class="reactor-layer-toggles">
+              <button class="layer-toggle-btn active" data-layer="tf_coils">
+                <span>TF Coils (18)</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+              <button class="layer-toggle-btn active" data-layer="solenoid">
+                <span>Central Solenoid</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+              <button class="layer-toggle-btn active" data-layer="vacuum_vessel">
+                <span>Vacuum Vessel</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+              <button class="layer-toggle-btn active" data-layer="plasma">
+                <span>Plasma Ring</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+              <button class="layer-toggle-btn active" data-layer="pf_coils">
+                <span>PF Coils (6)</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+              <button class="layer-toggle-btn active" data-layer="divertor">
+                <span>Divertor Cassettes</span>
+                <span class="layer-toggle-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Component Inspection Card -->
+          <div class="component-inspect-card">
+            <div class="component-tag" id="compInspectTag">AZIMUTHAL MAGNETIC CAGE</div>
+            <h3 class="component-title" id="compInspectTitle">Toroidal Field (TF) Coils</h3>
+            <p class="component-desc" id="compInspectDesc">
+              Set of 18 giant D-shaped superconducting coils wound with Niobium-Tin (Nb₃Sn) cables. Generates the primary azimuthal magnetic field (5.3 Tesla on axis, 11.8 Tesla peak at coil conductor) to confine charged plasma particles.
+            </p>
+            <div class="component-metrics-grid" id="compInspectMetrics">
+              <!-- Injected via js/visuals/tokamak-canvas.js -->
+            </div>
+          </div>
+
+          <!-- Quick Selector List -->
+          <div class="component-selector-list">
+            <button class="component-nav-item active" data-component="toroidal_coils">01. Toroidal Field Coils</button>
+            <button class="component-nav-item" data-component="central_solenoid">02. Central Solenoid</button>
+            <button class="component-nav-item" data-component="vacuum_vessel">03. Vacuum Vessel</button>
+            <button class="component-nav-item" data-component="plasma_ring">04. Deuterium-Tritium Plasma</button>
+            <button class="component-nav-item" data-component="poloidal_coils">05. Poloidal Field Coils</button>
+            <button class="component-nav-item" data-component="divertor">06. Tungsten Divertor</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 02 — PLASMA: CHARGED PARTICLE KINETICS
+       ======================================================================== -->
+  <section class="section section--alt" id="plasma">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">SECTION 02 // PLASMA PHYSICS</span>
+        <h2 class="section-title">Plasma Confinement & Kinetics</h2>
+        <p class="section-desc">
+          Thermonuclear plasma consists of fully ionized deuterium and tritium ions moving at thousands of kilometers per second. Charged particles gyrate around magnetic field lines via the Lorentz force while collective turbulence and collisions drive radial transport.
+        </p>
+      </div>
+
+      <div class="plasma-layout">
+        <!-- Interactive Particle Canvas -->
+        <div class="plasma-canvas-wrapper">
+          <div class="plasma-hud">
+            <div class="plasma-hud-left">
+              <div class="plasma-readout-pill">THERMAL VELOCITY: <span id="hudThermalVelocity">1,200 km/s</span></div>
+              <div class="plasma-readout-pill">ION COLLISION FREQUENCY: <span id="hudCollisionRate">4.2 kHz</span></div>
+              <div class="plasma-readout-pill">TRANSPORT LOSS FLUX: <span id="hudLossFlux">26.3 kW/m²</span></div>
+            </div>
+            <div class="plasma-hud-right">
+              <div class="status-pill status-pill--cyan">H-MODE ACTIVE</div>
+            </div>
+          </div>
+
+          <canvas id="plasmaCanvas" class="plasma-canvas"></canvas>
+
+          <!-- Core-to-Edge Radial Temperature Profile Overlay -->
+          <div class="plasma-profile-overlay">
+            <div class="plasma-profile-title">CORE-TO-EDGE PROFILE T(r)</div>
+            <canvas id="plasmaProfileCanvas" class="plasma-profile-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Controls Desk -->
+        <div class="plasma-controls-panel">
+          <div class="panel-header" style="margin-bottom: 0;">
+            <span class="panel-title">ACTUATOR SLIDERS</span>
+          </div>
+
+          <!-- Temperature -->
+          <div class="plasma-control-group">
+            <div class="plasma-control-label-wrap">
+              <span class="plasma-param-name">TEMPERATURE</span>
+              <span class="plasma-param-value" id="plasmaTempVal">150 MK</span>
+            </div>
+            <input type="range" id="plasmaTempSlider" min="10" max="200" step="1" value="150" aria-label="Plasma Temperature">
+            <div class="plasma-param-desc">Increases mean particle kinetic energy, relativistic thermal velocity, and thermonuclear fusion probability.</div>
+          </div>
+
+          <!-- Density -->
+          <div class="plasma-control-group">
+            <div class="plasma-control-label-wrap">
+              <span class="plasma-param-name">DENSITY</span>
+              <span class="plasma-param-value" id="plasmaDensityVal">1.00 × 10²⁰ m⁻³</span>
+            </div>
+            <input type="range" id="plasmaDensitySlider" min="0.2" max="3.0" step="0.05" value="1.00" aria-label="Plasma Density">
+            <div class="plasma-param-desc">Scales total particle concentration and collision frequency; approaching the Greenwald limit risks thermal collapse.</div>
+          </div>
+
+          <!-- Confinement Time -->
+          <div class="plasma-control-group">
+            <div class="plasma-control-label-wrap">
+              <span class="plasma-param-name">CONFINEMENT (τ_E)</span>
+              <span class="plasma-param-value" id="plasmaConfineVal">3.80 s</span>
+            </div>
+            <input type="range" id="plasmaConfineSlider" min="0.5" max="6.0" step="0.1" value="3.80" aria-label="Energy Confinement Time">
+            <div class="plasma-param-desc">Suppresses radial turbulent eddies and drift waves, isolating hot core energy from the chamber walls.</div>
+          </div>
+
+          <!-- Heating Power -->
+          <div class="plasma-control-group">
+            <div class="plasma-control-label-wrap">
+              <span class="plasma-param-name">HEATING POWER (NBI / RF)</span>
+              <span class="plasma-param-value" id="plasmaHeatVal">45 MW</span>
+            </div>
+            <input type="range" id="plasmaHeatSlider" min="0" max="100" step="1" value="45" aria-label="Auxiliary Heating Power">
+            <div class="plasma-param-desc">Injects 1 MeV neutral deuterium beams and 170 GHz electron cyclotron radiofrequency waves directly into the core.</div>
+          </div>
+
+          <!-- Preset Modes -->
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: var(--space-4);">
+            <div class="mono-label" style="margin-bottom: var(--space-2);">OPERATIONAL REGIMES</div>
+            <div class="plasma-presets">
+              <button class="plasma-preset-btn" data-preset="ohmic">OHMIC</button>
+              <button class="plasma-preset-btn active" data-preset="hmode">H-MODE</button>
+              <button class="plasma-preset-btn" data-preset="burning">BURNING</button>
+            </div>
+          </div>
+
+          <!-- Particle Legend -->
+          <div class="particle-type-bar">
+            <div class="particle-badge-group">
+              <div class="particle-badge">
+                <span class="particle-color-indicator particle-color-indicator--deuterium"></span>
+                <span>Deuterium (D+)</span>
+              </div>
+              <div class="particle-badge">
+                <span class="particle-color-indicator particle-color-indicator--tritium"></span>
+                <span>Tritium (T+)</span>
+              </div>
+              <div class="particle-badge">
+                <span class="particle-color-indicator particle-color-indicator--alpha"></span>
+                <span>Alpha (He²+)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 03 — MAGNETIC FIELD: TOPOLOGY & PARTICLE TRACING
+       ======================================================================== -->
+  <section class="section" id="magnetic">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">SECTION 03 // MAGNETIC TOPOLOGY</span>
+        <h2 class="section-title">Magnetic Confinement & Helical Drift</h2>
+        <p class="section-desc">
+          A pure toroidal magnetic field suffers from Grad-B and curvature drifts, which separate positive ions and negative electrons vertically, creating an electric field that blows the plasma into the outer wall. Tokamaks induce a poloidal field to twist lines into closed helices, neutralizing charge separation.
+        </p>
+      </div>
+
+      <div class="magnetic-layout">
+        <!-- Magnetic Topology Canvas Viewport -->
+        <div class="magnetic-canvas-card">
+          <div class="magnetic-overlay-tools">
+            <div class="magnetic-status-box">ACTIVE TRACER: <strong id="tracerModeLabel">TRAPPED (BANANA ORBIT)</strong></div>
+            <div class="magnetic-status-box">CYCLOTRON FREQUENCY: <strong id="hudGyroFrequency">40.3 MHz</strong></div>
+          </div>
+
+          <canvas id="magneticCanvas" class="magnetic-canvas"></canvas>
+        </div>
+
+        <!-- Magnetic Control Deck -->
+        <div class="magnetic-controls-panel">
+          <div class="panel-header" style="margin-bottom: 0;">
+            <span class="panel-title">FLUX SURFACE CONTROLS</span>
+          </div>
+
+          <!-- Field Strength -->
+          <div class="magnetic-param-group">
+            <div class="magnetic-param-header">
+              <span class="magnetic-param-title">FIELD STRENGTH (B₀)</span>
+              <span class="magnetic-param-val" id="magFieldVal">5.3 T</span>
+            </div>
+            <input type="range" id="magFieldSlider" min="1.0" max="13.0" step="0.1" value="5.3" aria-label="Magnetic Field Strength">
+          </div>
+
+          <!-- Safety Factor q -->
+          <div class="magnetic-param-group">
+            <div class="magnetic-param-header">
+              <span class="magnetic-param-title">SAFETY FACTOR q(r)</span>
+              <span class="magnetic-param-val" id="magSafetyVal">q = 2.0</span>
+            </div>
+            <input type="range" id="magSafetySlider" min="1.0" max="4.0" step="0.1" value="2.0" aria-label="Safety Factor q">
+          </div>
+
+          <!-- Line Density -->
+          <div class="magnetic-param-group">
+            <div class="magnetic-param-header">
+              <span class="magnetic-param-title">FIELD LINE DENSITY</span>
+              <span class="magnetic-param-val" id="magDensityVal">36 lines</span>
+            </div>
+            <input type="range" id="magDensitySlider" min="12" max="72" step="6" value="36" aria-label="Field Line Density">
+          </div>
+
+          <!-- Animation Speed -->
+          <div class="magnetic-param-group">
+            <div class="magnetic-param-header">
+              <span class="magnetic-param-title">ANIMATION SPEED</span>
+              <span class="magnetic-param-val" id="magSpeedVal">1.0×</span>
+            </div>
+            <input type="range" id="magSpeedSlider" min="0.2" max="2.5" step="0.1" value="1.0" aria-label="Magnetic Animation Speed">
+          </div>
+
+          <!-- Particle Tracing Modes -->
+          <div class="magnetic-param-group" style="border-top: 1px solid var(--border-subtle); padding-top: var(--space-4);">
+            <span class="mono-label" style="margin-bottom: var(--space-2);">GUIDING CENTER TRACER</span>
+            <div class="particle-trace-selector">
+              <button class="trace-mode-btn active" data-mode="banana">BANANA ORBIT</button>
+              <button class="trace-mode-btn" data-mode="passing">PASSING ORBIT</button>
+            </div>
+          </div>
+
+          <!-- Engineering Brief Card -->
+          <div class="magnetic-physics-card">
+            <h4>Magnetic Mirror Effect & Neoclassical Transport</h4>
+            <p>
+              Due to toroidal geometry, the magnetic field is stronger on the inboard side ($B \propto 1/R$). Particles with high perpendicular velocity bounce between high-field regions, tracing banana-shaped orbits that increase neoclassical diffusion.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 04 — FUSION SIMULATION: COUPLED LAWSON DIFFERENTIAL ENGINE
+       ======================================================================== -->
+  <section class="section section--alt" id="simulation">
+    <div class="container sim-container">
+      <div class="section-header">
+        <span class="section-tag">SECTION 04 // DIFFERENTIAL SIMULATION ENGINE</span>
+        <h2 class="section-title">Thermonuclear Fusion Simulation</h2>
+        <p class="section-desc">
+          A coupled physical simulation solving power balance, alpha particle self-heating, Bremsstrahlung radiation losses, energy confinement degradation, and plasma stability boundaries in real time.
+        </p>
+      </div>
+
+      <!-- Master Control Desk Console -->
+      <div class="sim-console-bar">
+        <div class="sim-status-group">
+          <div class="sim-state-badge sim-state-badge--offline" id="simStateBadge">OFFLINE</div>
+          <div class="sim-timer">PULSE CLOCK: <strong id="simPulseTimer">00:00.00</strong></div>
+        </div>
+
+        <div class="sim-actions-group">
+          <button class="btn btn--primary" id="simStartBtn">START PULSE</button>
+          <button class="btn btn--secondary" id="simPauseBtn">PAUSE</button>
+          <button class="btn btn--secondary" id="simResetBtn">RESET</button>
+          <div class="scram-btn-wrap">
+            <button class="btn btn--scram" id="simScramBtn">EMERGENCY SCRAM</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consequence Alert Banner -->
+      <div class="sim-alert-banner" id="simAlertBanner">
+        <!-- Injected via js/engine/telemetry-graphs.js -->
+      </div>
+
+      <!-- Live Telemetry Readout Strip -->
+      <div class="sim-telemetry-strip">
+        <div class="sim-telemetry-box highlight">
+          <div class="sim-tel-label">PLASMA TEMP (T_i)</div>
+          <div class="sim-tel-value"><span id="telPlasmaTemp">15.0</span> <span class="sim-tel-unit">MK</span></div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barPlasmaTemp" style="width: 10%;"></div></div>
+        </div>
+
+        <div class="sim-telemetry-box">
+          <div class="sim-tel-label">CORE DENSITY (n_e)</div>
+          <div class="sim-tel-value"><span id="telDensity">1.00</span> <span class="sim-tel-unit">10²⁰ m⁻³</span></div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barDensity" style="width: 33%;"></div></div>
+        </div>
+
+        <div class="sim-telemetry-box">
+          <div class="sim-tel-label">CONFINEMENT (τ_E)</div>
+          <div class="sim-tel-value"><span id="telConfinement">2.40</span> <span class="sim-tel-unit">s</span></div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barConfinement" style="width: 40%;"></div></div>
+        </div>
+
+        <div class="sim-telemetry-box">
+          <div class="sim-tel-label">STABILITY MARGIN</div>
+          <div class="sim-tel-value" id="telStability">95%</div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barStability" style="width: 95%;"></div></div>
+        </div>
+
+        <div class="sim-telemetry-box">
+          <div class="sim-tel-label">FUSION RATE</div>
+          <div class="sim-tel-value"><span id="telFusionRate">0.0</span> <span class="sim-tel-unit">10¹⁸ /s</span></div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barFusionRate" style="width: 0%;"></div></div>
+        </div>
+
+        <div class="sim-telemetry-box highlight">
+          <div class="sim-tel-label">ENERGY OUTPUT (P_fus)</div>
+          <div class="sim-tel-value"><span id="telEnergyOutput">0</span> <span class="sim-tel-unit">MW</span></div>
+          <div class="sim-tel-bar"><div class="sim-tel-fill" id="barEnergyOutput" style="width: 0%;"></div></div>
+        </div>
+      </div>
+
+      <!-- Main Interactive Grid: Controls & Live Chart -->
+      <div class="sim-main-grid">
+        <!-- Input Parameters Desk -->
+        <div class="sim-inputs-card">
+          <div class="panel-header" style="margin-bottom: 0;">
+            <span class="panel-title">DISCHARGE PARAMETERS</span>
+          </div>
+
+          <div class="sim-input-item">
+            <div class="sim-input-header">
+              <span class="sim-input-title">AUXILIARY HEATING (P_aux)</span>
+              <span class="sim-input-val" id="simAuxHeatVal">40 MW</span>
+            </div>
+            <input type="range" id="simAuxHeatSlider" min="0" max="100" step="1" value="40" aria-label="Auxiliary Heating">
+          </div>
+
+          <div class="sim-input-item">
+            <div class="sim-input-header">
+              <span class="sim-input-title">GAS PUFF DENSITY (n)</span>
+              <span class="sim-input-val" id="simDensityVal">1.0 × 10²⁰ m⁻³</span>
+            </div>
+            <input type="range" id="simDensitySlider" min="0.1" max="3.0" step="0.1" value="1.0" aria-label="Gas Puff Density">
+          </div>
+
+          <div class="sim-input-item">
+            <div class="sim-input-header">
+              <span class="sim-input-title">TOROIDAL FIELD (B₀)</span>
+              <span class="sim-input-val" id="simBFieldVal">5.3 T</span>
+            </div>
+            <input type="range" id="simBFieldSlider" min="1.0" max="13.0" step="0.1" value="5.3" aria-label="Toroidal Field B0">
+          </div>
+
+          <div class="sim-input-item">
+            <div class="sim-input-header">
+              <span class="sim-input-title">PLASMA CURRENT (I_p)</span>
+              <span class="sim-input-val" id="simCurrentVal">15.0 MA</span>
+            </div>
+            <input type="range" id="simCurrentSlider" min="5.0" max="18.0" step="0.5" value="15.0" aria-label="Plasma Current Ip">
+          </div>
+
+          <div class="panel--surface" style="padding: var(--space-3); border-radius: 2px;">
+            <div class="mono-label" style="margin-bottom: 4px;">LIMIT THRESHOLDS</div>
+            <div style="font-size: 0.75rem; color: #8fa0b5; line-height: 1.4;">
+              • Troyon Beta Limit: β_N ≤ 3.50<br>
+              • Greenwald Density: n_G ≈ 1.20 × 10²⁰ m⁻³<br>
+              • Ignition Criterion: P_alpha ≥ P_loss + P_brems
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Live Waveform Graph -->
+        <div class="sim-graph-card">
+          <div class="panel-header">
+            <span class="panel-title">REAL-TIME POWER & TEMPERATURE PROFILE</span>
+            <div class="sim-graph-legend">
+              <div class="legend-item"><span class="legend-color" style="background: #00f0ff;"></span> Temp (MK)</div>
+              <div class="legend-item"><span class="legend-color" style="background: #9d5cff;"></span> P_fus (MW)</div>
+              <div class="legend-item"><span class="legend-color" style="background: #ffaa00;"></span> Stability (%)</div>
+              <div class="legend-item"><span class="legend-color" style="background: #00e676;"></span> Q Factor (×10)</div>
+            </div>
+          </div>
+
+          <div class="sim-graph-canvas-wrap">
+            <canvas id="oscilloscopeCanvas" class="sim-graph-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 05 — LIVE TELEMETRY: INDUSTRIAL CONTROL ROOM DASHBOARD
+       ======================================================================== -->
+  <section class="section" id="telemetry">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">SECTION 05 // CONTROL ROOM TELEMETRY</span>
+        <h2 class="section-title">Live Diagnostic Monitoring</h2>
+        <p class="section-desc">
+          Precision telemetry streams from thousands of diagnostic sensors monitoring vacuum integrity, superconducting magnet temperatures, divertor thermal loads, and poloidal equilibrium flux surfaces.
+        </p>
+      </div>
+
+      <div class="telemetry-grid">
+        <!-- Left: Radial Vector Gauges & Subsystems -->
+        <div class="telemetry-main-column">
+          <div class="telemetry-gauge-row">
+            <!-- Gauge 1: Divertor Load -->
+            <div class="gauge-card">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="36" class="gauge-bg-circle"></circle>
+                  <circle cx="40" cy="40" r="36" class="gauge-bar-circle" id="gaugeDivertorCircle" style="stroke: #ffaa00;"></circle>
+                </svg>
+                <span class="gauge-reading" id="gaugeDivertorVal">4.2</span>
+              </div>
+              <div class="gauge-label">DIVERTOR LOAD</div>
+              <div class="gauge-subtext">MW/m² (Limit: 20)</div>
+            </div>
+
+            <!-- Gauge 2: Stored Energy -->
+            <div class="gauge-card">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="36" class="gauge-bg-circle"></circle>
+                  <circle cx="40" cy="40" r="36" class="gauge-bar-circle" id="gaugeEnergyCircle" style="stroke: #00f0ff;"></circle>
+                </svg>
+                <span class="gauge-reading" id="gaugeEnergyVal">8.5</span>
+              </div>
+              <div class="gauge-label">STORED ENERGY</div>
+              <div class="gauge-subtext">MJ (Thermal)</div>
+            </div>
+
+            <!-- Gauge 3: Cryostat TF Coil Temp -->
+            <div class="gauge-card">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="36" class="gauge-bg-circle"></circle>
+                  <circle cx="40" cy="40" r="36" class="gauge-bar-circle" style="stroke: #00e676; stroke-dashoffset: 40;"></circle>
+                </svg>
+                <span class="gauge-reading" id="gaugeCryoVal">4.22 K</span>
+              </div>
+              <div class="gauge-label">TF COIL CRYO-TEMP</div>
+              <div class="gauge-subtext">Liquid Helium (4.5K max)</div>
+            </div>
+
+            <!-- Gauge 4: Vessel Vacuum -->
+            <div class="gauge-card">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="36" class="gauge-bg-circle"></circle>
+                  <circle cx="40" cy="40" r="36" class="gauge-bar-circle" style="stroke: #a855f7; stroke-dashoffset: 15;"></circle>
+                </svg>
+                <span class="gauge-reading">1.2e-9</span>
+              </div>
+              <div class="gauge-label">BASE VACUUM</div>
+              <div class="gauge-subtext">mbar (Ultra-high)</div>
+            </div>
+          </div>
+
+          <!-- Channel Selection Pills -->
+          <div class="oscilloscope-card" style="margin-top: var(--space-4);">
+            <div class="oscilloscope-header">
+              <span class="mono-label">OSCILLOSCOPE CHANNELS</span>
+              <div class="oscilloscope-channel-toggles">
+                <button class="channel-tag channel-tag--ch1 active" data-channel="ch1">CH1: T_ion</button>
+                <button class="channel-tag channel-tag--ch2 active" data-channel="ch2">CH2: P_fus</button>
+                <button class="channel-tag channel-tag--ch3 active" data-channel="ch3">CH3: Stability</button>
+                <button class="channel-tag channel-tag--ch4 active" data-channel="ch4">CH4: Q-Factor</button>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #64748b;">Active telemetry buffer logging 200 physical timesteps with synchronous hardware clock synchronization.</p>
+          </div>
+        </div>
+
+        <!-- Right: Equilibrium Cross-Section & Event Stream -->
+        <div class="telemetry-side-column">
+          <!-- Cross Section Monitor -->
+          <div class="cross-section-card">
+            <div class="panel-header" style="margin-bottom: 0;">
+              <span class="panel-title">POLOIDAL FLUX EQUILIBRIUM</span>
+              <span class="status-pill status-pill--cyan">X-POINT LOCATED</span>
+            </div>
+
+            <div class="cross-section-canvas-wrap">
+              <canvas id="crossSectionCanvas" class="cross-section-canvas"></canvas>
+            </div>
+
+            <div class="cross-section-params">
+              <div class="cs-param-item">ELONGATION: <strong>κ = 1.85</strong></div>
+              <div class="cs-param-item">TRIANGULARITY: <strong>δ = 0.45</strong></div>
+              <div class="cs-param-item">SEPARATRIX: <strong>CLOSED</strong></div>
+            </div>
+          </div>
+
+          <!-- Diagnostic Event Stream -->
+          <div class="event-log-card">
+            <div class="panel-header" style="margin-bottom: 0;">
+              <span class="panel-title">SYSTEM EVENT TIMELINE</span>
+            </div>
+
+            <div class="event-log-stream" id="telemetryLogStream">
+              <div class="event-log-item event-log-item--info">
+                <span class="event-time">[12:00:01.020]</span>
+                <span class="event-text">Diagnostic data acquisition online. TF coils energized to 5.3 Tesla.</span>
+              </div>
+              <div class="event-log-item event-log-item--info">
+                <span class="event-time">[12:00:02.450]</span>
+                <span class="event-text">Cryogenic plant steady-state at 4.22 K. Supercritical helium circulation nominal.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 06 — EXPERIMENTS: MISSION SCENARIOS & LOCAL STORAGE
+       ======================================================================== -->
+  <section class="section section--alt" id="experiments">
+    <div class="container experiments-layout">
+      <div class="section-header">
+        <span class="section-tag">SECTION 06 // EXPERIMENTAL FLIGHT SCENARIOS</span>
+        <h2 class="section-title">Research Scenarios & Test Flights</h2>
+        <p class="section-desc">
+          Execute structured experimental campaigns to test reactor performance, explore operational stability boundaries, achieve self-sustained burning star conditions, and log results to persistent storage.
+        </p>
+      </div>
+
+      <!-- Scenarios Cards Grid -->
+      <div class="scenarios-grid" id="scenariosGrid">
+        <!-- Injected via js/modules/experiments.js -->
+      </div>
+
+      <!-- Active Mission Flight Tracker Panel -->
+      <div class="scenario-tracker-panel">
+        <div class="tracker-header">
+          <div class="tracker-title-group">
+            <span class="mono-label" id="trackerTag">MISSION SCENARIO 01</span>
+            <h3 id="trackerTitle">Thermonuclear Ignition</h3>
+            <p id="trackerDesc">Achieve self-heating condition where alpha particle power balances transport losses and Q >= 10.0.</p>
+          </div>
+          <button class="btn btn--primary" onclick="window.ExperimentManager.launchExperiment()">EXECUTE EXPERIMENT</button>
+        </div>
+
+        <div class="tracker-metrics-grid" id="trackerMetrics">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- LocalStorage Run History Table -->
+      <div class="history-section">
+        <div class="panel-header">
+          <span class="panel-title">TELEMETRY RUN ARCHIVE (LOCAL STORAGE)</span>
+          <button class="btn btn--secondary btn--sm" onclick="window.ExperimentManager.clearHistory()">CLEAR LOGS</button>
+        </div>
+
+        <div class="history-table-wrapper">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>RUN ID</th>
+                <th>CAMPAIGN TITLE</th>
+                <th>TIMESTAMP (UTC)</th>
+                <th>RESULT STATUS</th>
+                <th>EFFICIENCY SCORE</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Injected via js/modules/experiments.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 07 — RESEARCH: INTERACTIVE PHYSICS & ANATOMY
+       ======================================================================== -->
+  <section class="section" id="research">
+    <div class="container research-hub">
+      <div class="section-header">
+        <span class="section-tag">SECTION 07 // SCIENCE & PRINCIPLES</span>
+        <h2 class="section-title">Fusion Physics & Engineering Foundations</h2>
+        <p class="section-desc">
+          Explore the fundamental physics of thermonuclear fusion, magnetic confinement, plasma transport barriers, and the engineering breakthroughs required for commercial power.
+        </p>
+      </div>
+
+      <!-- Topic Navigation Tabs -->
+      <div class="research-tabs">
+        <button class="research-tab-btn active" data-topic="fusion">01. WHAT IS FUSION?</button>
+        <button class="research-tab-btn" data-topic="tokamak">02. HOW TOKAMAKS WORK</button>
+        <button class="research-tab-btn" data-topic="confinement">03. MAGNETIC CONFINEMENT</button>
+        <button class="research-tab-btn" data-topic="lawson">04. THE LAWSON CRITERION</button>
+        <button class="research-tab-btn" data-topic="challenges">05. ENGINEERING CHALLENGES</button>
+      </div>
+
+      <!-- Pane 01: What is Fusion? -->
+      <div class="research-pane active" data-pane="fusion">
+        <div class="research-info-column">
+          <span class="research-topic-tag">NUCLEAR REACTION MECHANICS</span>
+          <h3 class="research-headline">Fusing the Lightest Nuclei to Power Humanity</h3>
+          <p class="research-body">
+            Nuclear fusion is the fundamental energy source of the universe. When two light hydrogen isotopes—Deuterium (²H) and Tritium (³H)—collide with sufficient energy to overcome electrostatic Coulomb repulsion, they fuse into Helium-4 and release a high-energy neutron.
+          </p>
+
+          <div class="research-points-list">
+            <div class="research-point-item">
+              <span class="research-point-icon">⚛</span>
+              <div><strong>Mass Defect Energy Release:</strong> $\Delta m = m_D + m_T - (m_\alpha + m_n) = 0.0188 \text{ u}$. Converted via $E = \Delta m c^2$ to produce exactly 17.6 MeV per reaction.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">⚡</span>
+              <div><strong>Energy Density:</strong> One gram of deuterium-tritium fuel yields the energy equivalent of 10,000 liters of oil, with zero greenhouse gas emissions and no long-lived radioactive waste.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">🌊</span>
+              <div><strong>Inexhaustible Fuel:</strong> Deuterium is naturally abundant in seawater (33 g/m³). Tritium is bred directly inside the reactor using lithium blankets ($^6\text{Li} + n \to ^4\text{He} + \text{T} + 4.8 \text{ MeV}$).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-diagram-column">
+          <!-- Animated SVG Diagram of D-T Reaction -->
+          <svg class="research-interactive-svg" viewBox="0 0 400 280">
+            <!-- Deuterium -->
+            <g transform="translate(60, 90)">
+              <circle cx="0" cy="0" r="18" fill="rgba(0, 240, 255, 0.2)" stroke="#00f0ff" stroke-width="2"></circle>
+              <circle cx="-6" cy="-4" r="8" fill="#00f0ff"></circle>
+              <circle cx="6" cy="4" r="8" fill="#94a3b8"></circle>
+              <text x="0" y="32" fill="#00f0ff" font-family="monospace" font-size="11" text-anchor="middle">Deuterium (²H)</text>
+            </g>
+
+            <!-- Plus Sign -->
+            <text x="130" y="95" fill="#64748b" font-family="monospace" font-size="20" text-anchor="middle">+</text>
+
+            <!-- Tritium -->
+            <g transform="translate(200, 90)">
+              <circle cx="0" cy="0" r="22" fill="rgba(157, 92, 255, 0.2)" stroke="#9d5cff" stroke-width="2"></circle>
+              <circle cx="-6" cy="-6" r="8" fill="#9d5cff"></circle>
+              <circle cx="6" cy="-6" r="8" fill="#94a3b8"></circle>
+              <circle cx="0" cy="7" r="8" fill="#94a3b8"></circle>
+              <text x="0" y="36" fill="#9d5cff" font-family="monospace" font-size="11" text-anchor="middle">Tritium (³H)</text>
+            </g>
+
+            <!-- Reaction Arrow -->
+            <path d="M 240 90 L 270 90" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"></path>
+
+            <!-- Helium Alpha -->
+            <g transform="translate(330, 60)">
+              <circle cx="0" cy="0" r="20" fill="rgba(255, 170, 0, 0.25)" stroke="#ffaa00" stroke-width="2"></circle>
+              <circle cx="-5" cy="-5" r="7" fill="#ffaa00"></circle>
+              <circle cx="5" cy="-5" r="7" fill="#ffaa00"></circle>
+              <circle cx="-5" cy="5" r="7" fill="#94a3b8"></circle>
+              <circle cx="5" cy="5" r="7" fill="#94a3b8"></circle>
+              <text x="0" y="34" fill="#ffaa00" font-family="monospace" font-size="11" text-anchor="middle">Alpha ⁴He (3.5 MeV)</text>
+            </g>
+
+            <!-- Neutron -->
+            <g transform="translate(330, 180)">
+              <circle cx="0" cy="0" r="14" fill="rgba(255, 255, 255, 0.2)" stroke="#ffffff" stroke-width="2"></circle>
+              <circle cx="0" cy="0" r="8" fill="#ffffff"></circle>
+              <text x="0" y="28" fill="#ffffff" font-family="monospace" font-size="11" text-anchor="middle">Neutron n (14.1 MeV)</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Pane 02: How Tokamaks Work -->
+      <div class="research-pane" data-pane="tokamak">
+        <div class="research-info-column">
+          <span class="research-topic-tag">PULSE CYCLE DYNAMICS</span>
+          <h3 class="research-headline">The 6 Steps of a Tokamak Discharge</h3>
+          <p class="research-body">
+            Because magnetic coils cannot run continuous inductive current without saturation, standard tokamaks operate in discrete pulses or utilize radiofrequency current drive for steady-state burn.
+          </p>
+
+          <div class="research-points-list">
+            <div class="research-point-item">
+              <span class="research-point-icon">01</span>
+              <div><strong>Vacuum Pumping & Gas Puff:</strong> Chamber pumped to 10⁻⁹ mbar; a minute puff of D-T fuel gas (milligrams) is admitted.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">02</span>
+              <div><strong>Inductive Breakdown:</strong> Central solenoid pulses a steep voltage spike, ionizing the gas into a conductive plasma.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">03</span>
+              <div><strong>Ohmic Heating & Ramp-up:</strong> 15 MA current heats plasma up to 20–30 Million K via electrical resistance.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">04</span>
+              <div><strong>Auxiliary Heating & H-Mode:</strong> 50 MW of neutral beams and microwaves trigger the High-Confinement edge barrier, reaching 150 MK.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">05</span>
+              <div><strong>Burning Flat-top:</strong> Self-heating alpha particles maintain temperature while fusion power outputs 500 MW.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-diagram-column">
+          <!-- Tokamak Transformer Diagram -->
+          <svg class="research-interactive-svg" viewBox="0 0 380 260">
+            <!-- Solenoid Primary -->
+            <rect x="50" y="40" width="40" height="180" fill="#1e293b" stroke="#38bdf8" stroke-width="2" rx="4"></rect>
+            <text x="70" y="135" fill="#38bdf8" font-family="monospace" font-size="10" transform="rotate(-90 70 135)" text-anchor="middle">CENTRAL SOLENOID</text>
+
+            <!-- Magnetic Induction flux lines -->
+            <path d="M 70 30 C 70 10, 200 10, 200 30 L 200 230 C 200 250, 70 250, 70 230" fill="none" stroke="rgba(0, 240, 255, 0.4)" stroke-dasharray="4 4" stroke-width="1.5"></path>
+
+            <!-- Plasma Torus Secondary Ring -->
+            <ellipse cx="230" cy="130" rx="90" ry="60" fill="none" stroke="#9d5cff" stroke-width="14" opacity="0.3"></ellipse>
+            <ellipse cx="230" cy="130" rx="90" ry="60" fill="none" stroke="#00f0ff" stroke-width="4"></ellipse>
+            <text x="230" y="134" fill="#ffffff" font-family="monospace" font-size="11" text-anchor="middle">PLASMA CURRENT (I_p)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Pane 03: Magnetic Confinement -->
+      <div class="research-pane" data-pane="confinement">
+        <div class="research-info-column">
+          <span class="research-topic-tag">MAGNETIC EQUILIBRIUM</span>
+          <h3 class="research-headline">Overcoming Charge Drifts with Helical Shear</h3>
+          <p class="research-body">
+            In curved magnetic fields, the gradient in magnetic field strength ($B \propto 1/R$) and field curvature induce cross-field drifts:
+          </p>
+          <div style="font-family: monospace; font-size: 0.85rem; background: var(--bg-surface); padding: 10px; border-radius: 2px; color: var(--cyan-glow); margin-bottom: 12px;">
+            v_drift = (m / q B²) * [ v_parallel² (R × B)/R² + 0.5 v_perp² (B × ∇B)/B ]
+          </div>
+          <p class="research-body">
+            Positive ions drift upward while negative electrons drift downward. The resulting vertical polarization generates an electric field $\mathbf{E}$ that causes rapid $\mathbf{E} \times \mathbf{B}$ outward expulsion. By adding the poloidal field, field lines connect the top and bottom, allowing short-circuit current along field lines to neutralize the charge separation!
+          </p>
+        </div>
+
+        <div class="research-diagram-column">
+          <svg class="research-interactive-svg" viewBox="0 0 360 240">
+            <circle cx="180" cy="120" r="80" fill="none" stroke="#334155" stroke-width="2"></circle>
+            <circle cx="180" cy="120" r="50" fill="none" stroke="#64748b" stroke-dasharray="3 3"></circle>
+            <!-- Drift arrows -->
+            <text x="180" y="30" fill="#00f0ff" font-family="monospace" font-size="12" text-anchor="middle">Ions Drift Upward (+)</text>
+            <text x="180" y="225" fill="#ffaa00" font-family="monospace" font-size="12" text-anchor="middle">Electrons Drift Downward (-)</text>
+            <line x1="180" y1="50" x2="180" y2="190" stroke="#ff334b" stroke-width="2" stroke-dasharray="4 4"></line>
+            <text x="195" y="125" fill="#ff334b" font-family="monospace" font-size="11">E-Field</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Pane 04: The Lawson Criterion -->
+      <div class="research-pane" data-pane="lawson">
+        <div class="research-info-column">
+          <span class="research-topic-tag">TRIPLE PRODUCT FORMULATION</span>
+          <h3 class="research-headline">The Triple Product Ignition Threshold</h3>
+          <p class="research-body">
+            Formulated by British physicist John D. Lawson in 1955, the triple product dictates that for fusion self-heating to exceed energy losses, the product of density, temperature, and energy confinement time must satisfy:
+          </p>
+          <div style="font-family: monospace; font-size: 1.05rem; background: var(--bg-surface); padding: 12px; border-radius: 2px; color: var(--cyan-glow); margin-bottom: 12px;">
+            n · T · τ_E ≥ 3.0 × 10²¹ keV · s · m⁻³
+          </div>
+
+          <!-- Interactive Triple Product Explorer -->
+          <div class="lawson-calc-box">
+            <div class="lawson-calc-header">INTERACTIVE TRIPLE PRODUCT CALCULATOR</div>
+            <div class="control-group">
+              <div class="control-header">
+                <span class="mono-label">Density (n)</span>
+                <span class="mono-value" id="calcDensityVal">1.0 × 10²⁰ m⁻³</span>
+              </div>
+              <input type="range" id="calcDensitySlider" min="0.2" max="3.0" step="0.1" value="1.0" aria-label="Calculator Density">
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <span class="mono-label">Temperature (T)</span>
+                <span class="mono-value" id="calcTempVal">15 keV (174 MK)</span>
+              </div>
+              <input type="range" id="calcTempSlider" min="5" max="30" step="1" value="15" aria-label="Calculator Temperature">
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <span class="mono-label">Confinement Time (τ_E)</span>
+                <span class="mono-value" id="calcTauVal">3.0 s</span>
+              </div>
+              <input type="range" id="calcTauSlider" min="0.5" max="6.0" step="0.5" value="3.0" aria-label="Calculator Confinement Time">
+            </div>
+
+            <div style="margin-top: 10px; border-top: 1px solid var(--border-subtle); padding-top: 10px;">
+              <div class="mono-label">CALCULATED VALUE</div>
+              <div class="lawson-calc-result" id="calcResultVal">45.0 × 10²⁰ keV·s·m⁻³</div>
+              <div class="sim-tel-bar" style="height: 6px; margin: 8px 0;"><div class="sim-tel-fill" id="calcResultBar" style="width: 100%;"></div></div>
+              <div class="status-pill status-pill--green" id="calcStatusBadge">IGNITION THRESHOLD SURPASSED</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-diagram-column">
+          <svg class="research-interactive-svg" viewBox="0 0 380 260">
+            <!-- Lawson Curve Plot -->
+            <line x1="40" y1="220" x2="350" y2="220" stroke="#64748b" stroke-width="1.5"></line>
+            <line x1="40" y1="20" x2="40" y2="220" stroke="#64748b" stroke-width="1.5"></line>
+            <text x="350" y="240" fill="#64748b" font-family="monospace" font-size="10" text-anchor="end">Temperature T (keV)</text>
+            <text x="30" y="30" fill="#64748b" font-family="monospace" font-size="10" transform="rotate(-90 30 30)" text-anchor="end">n · τ_E</text>
+
+            <!-- U-shaped Lawson boundary -->
+            <path d="M 60 40 Q 150 180, 220 120 T 340 50" fill="none" stroke="#00f0ff" stroke-width="2.5"></path>
+            <text x="210" y="105" fill="#00f0ff" font-family="monospace" font-size="11">IGNITION MINIMUM (~15 keV)</text>
+
+            <!-- Shaded Ignition Region -->
+            <path d="M 60 40 Q 150 180, 220 120 T 340 50 L 340 20 L 60 20 Z" fill="rgba(0, 240, 255, 0.08)"></path>
+            <text x="200" y="45" fill="#ffffff" font-family="monospace" font-size="12" text-anchor="middle">BURNING STAR DOMAIN</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Pane 05: Engineering Challenges -->
+      <div class="research-pane" data-pane="challenges">
+        <div class="research-info-column">
+          <span class="research-topic-tag">MATERIALS & TECHNOLOGY FRONTIERS</span>
+          <h3 class="research-headline">The Modern Engineering Bottlenecks</h3>
+          <p class="research-body">
+            Overcoming the physics of fusion has shifted from pure plasma science to hardcore mechanical, materials, and cryogenic engineering.
+          </p>
+
+          <div class="research-points-list">
+            <div class="research-point-item">
+              <span class="research-point-icon">01</span>
+              <div><strong>High-Temperature Superconductors (HTS):</strong> Rare-Earth Barium Copper Oxide (REBCO) tape operates at 20+ Tesla at 20 Kelvin, enabling reactors to be dramatically more compact.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">02</span>
+              <div><strong>14 MeV Neutron Material Damage:</strong> High-energy neutrons displace atoms in stainless steel, causing lattice swelling and embrittlement. Developing Reduced-Activation Ferritic Martensitic (RAFM) steels is vital.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">03</span>
+              <div><strong>Divertor Heat Flux (20 MW/m²):</strong> Exceeding the thermal re-entry load of a spacecraft. Tungsten monoblocks with sub-surface water cooling channels operating near boiling margins.</div>
+            </div>
+            <div class="research-point-item">
+              <span class="research-point-icon">04</span>
+              <div><strong>Tritium Breeding Blankets:</strong> Closed-loop fuel cycle requiring a Tritium Breeding Ratio (TBR) $> 1.05$ using lithium ceramics or liquid lead-lithium eutectic alloys.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-diagram-column">
+          <svg class="research-interactive-svg" viewBox="0 0 380 250">
+            <!-- Divertor Monoblock Cross-section -->
+            <rect x="110" y="40" width="160" height="150" fill="#334155" stroke="#94a3b8" stroke-width="2" rx="4"></rect>
+            <text x="190" y="80" fill="#f1f5f9" font-family="monospace" font-size="11" text-anchor="middle">TUNGSTEN MONOBLOCK</text>
+
+            <!-- Cooling Pipe -->
+            <circle cx="190" cy="135" r="32" fill="#0c4a6e" stroke="#00f0ff" stroke-width="3"></circle>
+            <text x="190" y="139" fill="#00f0ff" font-family="monospace" font-size="10" text-anchor="middle">CuCrZr PIPE</text>
+            <text x="190" y="152" fill="#7dd3fc" font-family="monospace" font-size="8" text-anchor="middle">H₂O (150°C, 3 MPa)</text>
+
+            <!-- Incident Heat Flux Arrows -->
+            <path d="M 150 10 L 150 35 M 190 10 L 190 35 M 230 10 L 230 35" stroke="#ffaa00" stroke-width="2.5" marker-end="url(#arrowhead)"></path>
+            <text x="190" y="25" fill="#ffaa00" font-family="monospace" font-size="9" text-anchor="middle">20 MW/m² HEAT FLUX</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 08 — FINAL EXPERIENCE: CINEMATIC CLOSING & SPECIFICATIONS
+       ======================================================================== -->
+  <section class="section section-outro" id="outro">
+    <div class="outro-backdrop-glow"></div>
+    <div class="container outro-content">
+      <div class="outro-sub">FUSION-X ENGINEERING INITIATIVE</div>
+      <h2 class="outro-statement">
+        “THE FUTURE OF ENERGY IS AN <span>ENGINEERING PROBLEM</span>.”
+      </h2>
+      <a href="#simulation" class="btn btn--primary outro-cta-btn">[ EXPLORE THE SIMULATION ]</a>
+
+      <!-- Complete Engineering Dossier Technical Specification Sheet -->
+      <div class="outro-specs-panel">
+        <div class="panel-header">
+          <span class="panel-title">FUSION-X TOKAMAK SPECIFICATION DOSSIER // TECHNICAL DATA</span>
+          <span class="status-pill status-pill--cyan">REBCO ADVANCED MAGNETS</span>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-entry">
+            <span class="spec-entry-label">MAJOR RADIUS (R₀)</span>
+            <span class="spec-entry-val">6.20 meters</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">MINOR RADIUS (a)</span>
+            <span class="spec-entry-val">2.00 meters</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">PLASMA VOLUME</span>
+            <span class="spec-entry-val">840 m³</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">ON-AXIS TOROIDAL FIELD (B₀)</span>
+            <span class="spec-entry-val">5.30 Tesla (11.8T Peak)</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">MAX PLASMA CURRENT (I_p)</span>
+            <span class="spec-entry-val">15.0 Mega-Amperes</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">DESIGN THERMAL OUTPUT</span>
+            <span class="spec-entry-val">500 Megawatts Thermal</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">TARGET GAIN FACTOR (Q)</span>
+            <span class="spec-entry-val">Q ≥ 10.0 (Ignition: ∞)</span>
+          </div>
+          <div class="spec-entry">
+            <span class="spec-entry-label">SUPERCONDUCTOR TYPE</span>
+            <span class="spec-entry-val">Nb₃Sn + HTS REBCO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       INDUSTRIAL SCIENTIFIC FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-credits">
+        <strong>FUSION-X</strong> // Advanced Tokamak Engineering Platform &copy; 2026. Built with Vanilla HTML5, CSS3, &amp; JavaScript.
+      </div>
+      <div class="footer-shortcuts">
+        <span>KEYBOARD COMMANDS:</span>
+        <span><kbd class="kbd-shortcut">SPACE</kbd> Pause/Run</span>
+        <span><kbd class="kbd-shortcut">R</kbd> Reset</span>
+        <span><kbd class="kbd-shortcut">S</kbd> SCRAM</span>
+        <span><kbd class="kbd-shortcut">M</kbd> Mute</span>
+        <span><kbd class="kbd-shortcut">1-6</kbd> Hero Slides</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Marker definition for SVG diagrams -->
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <!-- ========================================================================
+       JAVASCRIPT ARCHITECTURE (Pure Vanilla JS, Zero External Libraries)
+       ======================================================================== -->
+  <script src="js/core/audio.js"></script>
+  <script src="js/core/carousel.js"></script>
+  <script src="js/visuals/tokamak-canvas.js"></script>
+  <script src="js/visuals/plasma-sim.js"></script>
+  <script src="js/visuals/magnetic-sim.js"></script>
+  <script src="js/engine/fusion-physics.js"></script>
+  <script src="js/engine/telemetry-graphs.js"></script>
+  <script src="js/modules/experiments.js"></script>
+  <script src="js/modules/research.js"></script>
+  <script src="js/core/app.js"></script>
+</body>
+</html>
