@@ -3,6 +3,9 @@
 # FUSION-X
 ### Advanced Tokamak Nuclear Fusion & Plasma Engineering Platform
 
+
+
+
 [![Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-00f0ff?style=for-the-badge)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-9d5cff?style=for-the-badge)](LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External%20Libs-00e676?style=for-the-badge)](https://github.com)
@@ -138,38 +141,7 @@ fusion-x/
 | <kbd>M</kbd> | **Audio Mute** | Toggle Web Audio procedural reactor acoustics |
 | <kbd>1</kbd>–<kbd>6</kbd> | **Slide Jump** | Jump directly to any of the 6 hero carousel slides |
 
----
 
-## 🚀 Quick Start & Deployment
-
-FUSION-X has **zero dependencies** and requires no build steps or package managers.
-
-### Local Execution
-1. Clone or download the repository:
-   ```bash
-   git clone https://github.com/your-username/fusion-x.git
-   cd fusion-x
-   ```
-2. Open `index.html` directly in any modern browser:
-   * **Windows:** Double-click `index.html` or run `start index.html`
-   * **macOS:** Run `open index.html`
-   * **Linux:** Run `xdg-open index.html`
-3. (Optional) Run with a local development server:
-   ```bash
-   # Python 3
-   python -m http.server 8080
-
-   # Node / npx
-   npx serve .
-   ```
-
-### Browser Compatibility
-* Google Chrome 90+
-* Microsoft Edge 90+
-* Mozilla Firefox 88+
-* Apple Safari 14+
-
----
 
 ## 📋 Engineering Specifications (FUSION-X Tokamak)
 
