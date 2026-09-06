@@ -3,7 +3,7 @@
 # FUSION-X
 ### Advanced Tokamak Nuclear Fusion & Plasma Engineering Platform
 
-
+https://fusion-x-w42z.vercel.app/
 
 
 [![Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-00f0ff?style=for-the-badge)](https://github.com)
